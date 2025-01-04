@@ -1,0 +1,18 @@
+[submodule "driver/M95P32"]
+	path = driver/M95P32
+	url = https://github.com/bassem-mostafa/EEPROM_M95P32.git
+[submodule "driver/AT24C256"]
+	path = driver/AT24C256
+	url = https://github.com/bassem-mostafa/EEPROM_AT24C256.git
+[submodule "port/Power_Analyzer"]
+	path = port/Power_Analyzer
+	url = https://github.com/bassem-mostafa/EEPROM_Power_Analyzer.git
+[submodule "port/Stub"]
+	path = port/Stub
+	url = https://github.com/bassem-mostafa/EEPROM_Stub.git
+[submodule "port/Windows"]
+	path = port/Windows
+	url = https://github.com/bassem-mostafa/EEPROM_Windows.git
+[submodule "port/Flow_Meter"]
+	path = port/Flow_Meter
+	url = https://github.com/bassem-mostafa/EEPROM_Flow_Meter.git
