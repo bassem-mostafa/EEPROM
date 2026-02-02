@@ -112,8 +112,6 @@ extern "C"
     EEPROM_Status_t EEPROM_Instance_Cycle( EEPROM_Instance_t * Instance );
     EEPROM_Status_t EEPROM_Instance_DeInitialize( EEPROM_Instance_t * Instance );
 
-    // TODO Add More APIs
-
     // #############################################################################
     // #### Public Variable(s) #####################################################
     // #############################################################################
