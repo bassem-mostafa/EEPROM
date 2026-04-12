@@ -88,7 +88,7 @@ extern "C"
     // #### Public Type(s) #########################################################
     // #############################################################################
 
-    typedef struct EEPROM_Instance_Context_t EEPROM_Instance_Context_t;
+    typedef struct EEPROM_InstanceContext_t EEPROM_InstanceContext_t;
 
     typedef struct EEPROM_Instance
     {
@@ -96,7 +96,7 @@ extern "C"
 
         union
         {
-            EEPROM_Instance_Context_t * Context;
+            EEPROM_InstanceContext_t * Context;
             EEPROM_M95P32_Instance_t * M95P32;
         };
     } EEPROM_Instance_t;
