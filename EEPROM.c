@@ -84,43 +84,45 @@ static EEPROM_Context_t EEPROM_Context;
 
 static EEPROM_Status_t EEPROM_Context_Initialize( void )
 {
-    EEPROM_Status_t Status = EEPROM_Status_Error;
+    EEPROM_Status_t Status = EEPROM_Status_Success;
+
     do
     {
         EEPROM_Trace( "%s( void )", __FUNCTION__ );
+
         for ( EEPROM_t EEPROM_x = EEPROM_Null; EEPROM_x < EEPROM_Count; ++EEPROM_x )
         {
             EEPROM_Context.Instance[ EEPROM_x ].EEPROMx = EEPROM_x;
         }
-        Status = EEPROM_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
 static EEPROM_Status_t EEPROM_Context_Cycle( void )
 {
-    EEPROM_Status_t Status = EEPROM_Status_Error;
+    EEPROM_Status_t Status = EEPROM_Status_Success;
+
     do
     {
         EEPROM_Trace( "%s( void )", __FUNCTION__ );
-
-        Status = EEPROM_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
 static EEPROM_Status_t EEPROM_Context_DeInitialize( void )
 {
-    EEPROM_Status_t Status = EEPROM_Status_Error;
+    EEPROM_Status_t Status = EEPROM_Status_Success;
+
     do
     {
         EEPROM_Trace( "%s( void )", __FUNCTION__ );
-
-        Status = EEPROM_Status_Success;
     }
     while ( 0 );
+
     return Status;
 }
 
@@ -274,7 +276,7 @@ EEPROM_Status_t EEPROM_Read( EEPROM_t EEPROMx, EEPROM_Address_t Address, EEPROM_
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char EEPROM_VERSION[] = "0.0.0.v20260412-1852";
+const char EEPROM_VERSION[] = "0.0.0.v20260416-2335";
 
 // #############################################################################
 // #### File Guard #############################################################
