@@ -88,11 +88,17 @@ extern "C"
     // #### Public Type(s) #########################################################
     // #############################################################################
 
+    typedef enum EEPROM_Type
+    {
+        EEPROM_Type_Unknown = 0,
+        EEPROM_Type_M95P32,
+    } EEPROM_Type_t;
+
     typedef struct EEPROM_InstanceContext_t EEPROM_InstanceContext_t;
 
     typedef struct EEPROM_Instance
     {
-        EEPROM_t EEPROMx;
+        EEPROM_Type_t Type;
 
         union
         {
@@ -106,14 +112,12 @@ extern "C"
     // #############################################################################
 
     // The following APIs MUST be provided by the port
-    EEPROM_Status_t EEPROM_IsValid( EEPROM_t EEPROMx );
+    EEPROM_Status_t EEPROM_Instance_Initialize( EEPROM_t EEPROMx );
+    EEPROM_Status_t EEPROM_Instance_Cycle( EEPROM_t EEPROMx );
+    EEPROM_Status_t EEPROM_Instance_DeInitialize( EEPROM_t EEPROMx );
 
-    EEPROM_Status_t EEPROM_Instance_Initialize( EEPROM_Instance_t * Instance );
-    EEPROM_Status_t EEPROM_Instance_Cycle( EEPROM_Instance_t * Instance );
-    EEPROM_Status_t EEPROM_Instance_DeInitialize( EEPROM_Instance_t * Instance );
-
-    EEPROM_Status_t EEPROM_Instance_Write( EEPROM_Instance_t * Instance, EEPROM_Address_t Address, EEPROM_Data_t * Data, EEPROM_DataLength_t DataLength );
-    EEPROM_Status_t EEPROM_Instance_Read( EEPROM_Instance_t * Instance, EEPROM_Address_t Address, EEPROM_Data_t * Data, EEPROM_DataLength_t DataLength );
+    EEPROM_Status_t EEPROM_Instance_Write( EEPROM_t EEPROMx, EEPROM_Address_t Address, EEPROM_Data_t * Data, EEPROM_DataLength_t DataLength );
+    EEPROM_Status_t EEPROM_Instance_Read( EEPROM_t EEPROMx, EEPROM_Address_t Address, EEPROM_Data_t * Data, EEPROM_DataLength_t DataLength );
 
     // #############################################################################
     // #### Public Variable(s) #####################################################
