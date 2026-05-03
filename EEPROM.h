@@ -101,17 +101,17 @@ extern "C"
     } EEPROM_Status_t;
 
     /**
-     *  @brief EEPROM Address Type
+     *  @brief EEPROM Address
      */
     typedef uint32_t EEPROM_Address_t;
 
     /**
-     *  @brief EEPROM Data Type
+     *  @brief EEPROM Data
      */
     typedef uint8_t EEPROM_Data_t;
 
     /**
-     *  @brief EEPROM Data Length Type
+     *  @brief EEPROM Data Length
      */
     typedef uint32_t EEPROM_DataLength_t;
 

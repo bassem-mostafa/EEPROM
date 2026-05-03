@@ -94,16 +94,13 @@ extern "C"
         EEPROM_Type_M95P32,
     } EEPROM_Type_t;
 
-    typedef struct EEPROM_InstanceContext_t EEPROM_InstanceContext_t;
-
     typedef struct EEPROM_Instance
     {
         EEPROM_Type_t Type;
 
         union
         {
-            EEPROM_InstanceContext_t * Context;
-            EEPROM_M95P32_Instance_t * M95P32;
+            EEPROM_M95P32_t M95P32x;
         };
     } EEPROM_Instance_t;
 
