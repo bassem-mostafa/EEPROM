@@ -59,72 +59,17 @@
 // #### Private Type(s) ########################################################
 // #############################################################################
 
-typedef struct EEPROM_Context
-{
-} EEPROM_Context_t;
-
 // #############################################################################
 // #### Private Method(s) Prototype ############################################
 // #############################################################################
-
-static EEPROM_Status_t EEPROM_Context_Initialize( void );
-static EEPROM_Status_t EEPROM_Context_Cycle( void );
-static EEPROM_Status_t EEPROM_Context_DeInitialize( void );
 
 // #############################################################################
 // #### Private Variable(s) ####################################################
 // #############################################################################
 
-static EEPROM_Context_t EEPROM_Context;
-
 // #############################################################################
 // #### Private Method(s) ######################################################
 // #############################################################################
-
-static EEPROM_Status_t EEPROM_Context_Initialize( void )
-{
-    EEPROM_Status_t Status = EEPROM_Status_Success;
-
-    do
-    {
-        EEPROM_Trace( "%s( void )", __FUNCTION__ );
-
-        UTIL_UNUSED( EEPROM_Context );
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static EEPROM_Status_t EEPROM_Context_Cycle( void )
-{
-    EEPROM_Status_t Status = EEPROM_Status_Success;
-
-    do
-    {
-        EEPROM_Trace( "%s( void )", __FUNCTION__ );
-
-        UTIL_UNUSED( EEPROM_Context );
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static EEPROM_Status_t EEPROM_Context_DeInitialize( void )
-{
-    EEPROM_Status_t Status = EEPROM_Status_Success;
-
-    do
-    {
-        EEPROM_Trace( "%s( void )", __FUNCTION__ );
-
-        UTIL_UNUSED( EEPROM_Context );
-    }
-    while ( 0 );
-
-    return Status;
-}
 
 // #############################################################################
 // #### Public Method(s) #######################################################
@@ -138,23 +83,9 @@ EEPROM_Status_t EEPROM_Initialize( EEPROM_t EEPROMx )
     {
         EEPROM_Trace( "%s( EEPROMx=%d )", __FUNCTION__, EEPROMx );
 
-        if ( ( Status = EEPROM_Context_Initialize( ) ) != EEPROM_Status_Success )
+        if ( ( Status = EEPROM_Port_Initialize( EEPROMx ) ) != EEPROM_Status_Success )
         {
             break;
-        }
-
-        for ( EEPROM_t EEPROM_x = EEPROM_Null; EEPROM_x < EEPROM_Count; ++EEPROM_x )
-        {
-            if ( EEPROMx != EEPROM_All && EEPROMx != EEPROM_x )
-            {
-                continue;
-            }
-
-            EEPROM_Status_t EEPROM_Status = EEPROM_Status_Success;
-            if ( ( EEPROM_Status = EEPROM_Instance_Initialize( EEPROM_x ) ) != EEPROM_Status_Success )
-            {
-                Status = EEPROM_Status;
-            }
         }
     }
     while ( 0 );
@@ -170,23 +101,9 @@ EEPROM_Status_t EEPROM_Cycle( EEPROM_t EEPROMx )
     {
         EEPROM_Trace( "%s( EEPROMx=%d )", __FUNCTION__, EEPROMx );
 
-        if ( ( Status = EEPROM_Context_Cycle( ) ) != EEPROM_Status_Success )
+        if ( ( Status = EEPROM_Port_Cycle( EEPROMx ) ) != EEPROM_Status_Success )
         {
             break;
-        }
-
-        for ( EEPROM_t EEPROM_x = EEPROM_Null; EEPROM_x < EEPROM_Count; ++EEPROM_x )
-        {
-            if ( EEPROMx != EEPROM_All && EEPROMx != EEPROM_x )
-            {
-                continue;
-            }
-
-            EEPROM_Status_t EEPROM_Status = EEPROM_Status_Success;
-            if ( ( EEPROM_Status = EEPROM_Instance_Cycle( EEPROM_x ) ) != EEPROM_Status_Success )
-            {
-                Status = EEPROM_Status;
-            }
         }
     }
     while ( 0 );
@@ -202,21 +119,10 @@ EEPROM_Status_t EEPROM_DeInitialize( EEPROM_t EEPROMx )
     {
         EEPROM_Trace( "%s( EEPROMx=%d )", __FUNCTION__, EEPROMx );
 
-        for ( EEPROM_t EEPROM_x = EEPROM_Null; EEPROM_x < EEPROM_Count; ++EEPROM_x )
+        if ( ( Status = EEPROM_Port_DeInitialize( EEPROMx ) ) != EEPROM_Status_Success )
         {
-            if ( EEPROMx != EEPROM_All && EEPROMx != EEPROM_x )
-            {
-                continue;
-            }
-
-            EEPROM_Status_t EEPROM_Status = EEPROM_Status_Success;
-            if ( ( EEPROM_Status = EEPROM_Instance_DeInitialize( EEPROM_x ) ) != EEPROM_Status_Success )
-            {
-                Status = EEPROM_Status;
-            }
+            break;
         }
-
-        Status = EEPROM_Context_DeInitialize( );
     }
     while ( 0 );
 
@@ -231,7 +137,10 @@ EEPROM_Status_t EEPROM_Write( EEPROM_t EEPROMx, EEPROM_Address_t Address, EEPROM
     {
         EEPROM_Trace( "%s( EEPROM=%d, Address=%08X, Data=%p, Length=%d )", __FUNCTION__, EEPROMx, Address, Data, DataLength );
 
-        Status = EEPROM_Instance_Write( EEPROMx, Address, Data, DataLength );
+        if ( ( Status = EEPROM_Port_Write( EEPROMx, Address, Data, DataLength ) ) != EEPROM_Status_Success )
+        {
+            break;
+        }
     }
     while ( 0 );
 
@@ -246,7 +155,10 @@ EEPROM_Status_t EEPROM_Read( EEPROM_t EEPROMx, EEPROM_Address_t Address, EEPROM_
     {
         EEPROM_Trace( "%s( EEPROM=%d, Address=%08X, Data=%p, Length=%d )", __FUNCTION__, EEPROMx, Address, Data, DataLength );
 
-        Status = EEPROM_Instance_Read( EEPROMx, Address, Data, DataLength );
+        if ( ( Status = EEPROM_Port_Read( EEPROMx, Address, Data, DataLength ) ) != EEPROM_Status_Success )
+        {
+            break;
+        }
     }
     while ( 0 );
 
@@ -257,7 +169,7 @@ EEPROM_Status_t EEPROM_Read( EEPROM_t EEPROMx, EEPROM_Address_t Address, EEPROM_
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char EEPROM_VERSION[] = "0.0.0.v20260517-1631";
+const char EEPROM_VERSION[] = "0.0.0.v20260913-1832";
 
 // #############################################################################
 // #### File Guard #############################################################

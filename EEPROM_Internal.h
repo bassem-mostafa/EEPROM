@@ -109,12 +109,12 @@ extern "C"
     // #############################################################################
 
     // The following APIs MUST be provided by the port
-    EEPROM_Status_t EEPROM_Instance_Initialize( EEPROM_t EEPROMx );
-    EEPROM_Status_t EEPROM_Instance_Cycle( EEPROM_t EEPROMx );
-    EEPROM_Status_t EEPROM_Instance_DeInitialize( EEPROM_t EEPROMx );
+    EEPROM_Status_t EEPROM_Port_Initialize( EEPROM_t EEPROMx );
+    EEPROM_Status_t EEPROM_Port_Cycle( EEPROM_t EEPROMx );
+    EEPROM_Status_t EEPROM_Port_DeInitialize( EEPROM_t EEPROMx );
 
-    EEPROM_Status_t EEPROM_Instance_Write( EEPROM_t EEPROMx, EEPROM_Address_t Address, EEPROM_Data_t * Data, EEPROM_DataLength_t DataLength );
-    EEPROM_Status_t EEPROM_Instance_Read( EEPROM_t EEPROMx, EEPROM_Address_t Address, EEPROM_Data_t * Data, EEPROM_DataLength_t DataLength );
+    EEPROM_Status_t EEPROM_Port_Write( EEPROM_t EEPROMx, EEPROM_Address_t Address, EEPROM_Data_t * Data, EEPROM_DataLength_t DataLength );
+    EEPROM_Status_t EEPROM_Port_Read( EEPROM_t EEPROMx, EEPROM_Address_t Address, EEPROM_Data_t * Data, EEPROM_DataLength_t DataLength );
 
     // #############################################################################
     // #### Public Variable(s) #####################################################
